@@ -1,0 +1,620 @@
+========================================
+         ePgdb 性能测试套件            
+========================================
+ProcessCnt=10 LoopCnt=500
+
+运行测试: 基础 CRUD 性能测试
+=== 基础 CRUD 性能测试 ===
+
+--- insert bench_users(record) ---
+==========================================
+execute tcPgdb:insert_user(#Fun<tcPgdb.17.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23327334400(ns)           23.33(s)              21(qps)
+PMaxTime:     23530598400(ns)           23.53(s)              21(qps)
+PSumTime:    233812172800(ns)          233.81(s)              21(qps)
+PAvgTime:   23381217280.0(ns)           23.38(s)              21(qps)
+FAvgTime:     46762434.56(ns)            0.05(s)              21(qps)
+PGrar   :               5(cn)            0.50(%)
+PLess   :               5(cn)            0.50(%)
+P50     :     23362560000(ns)           23.36(s)              21(qps)
+P90     :     23386009600(ns)           23.39(s)              21(qps)
+P95     :     23530598400(ns)           23.53(s)              21(qps)
+P99     :     23530598400(ns)           23.53(s)              21(qps)
+==========================================
+
+--- get bench_users by primary key ---
+==========================================
+execute tcPgdb:get_user(#Fun<tcPgdb.26.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:       517427200(ns)            0.52(s)             966(qps)
+PMaxTime:       547635200(ns)            0.55(s)             913(qps)
+PSumTime:      5399244800(ns)             5.4(s)             926(qps)
+PAvgTime:     539924480.0(ns)            0.54(s)             926(qps)
+FAvgTime:      1079848.96(ns)             0.0(s)             926(qps)
+PGrar   :               7(cn)            0.70(%)
+PLess   :               3(cn)            0.30(%)
+P50     :       543846400(ns)            0.54(s)             919(qps)
+P90     :       547123200(ns)            0.55(s)             913(qps)
+P95     :       547635200(ns)            0.55(s)             913(qps)
+P99     :       547635200(ns)            0.55(s)             913(qps)
+==========================================
+
+--- select bench_users by unique email ---
+==========================================
+execute tcPgdb:select_user_by_email(#Fun<tcPgdb.27.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:       509747200(ns)            0.51(s)             980(qps)
+PMaxTime:       548659200(ns)            0.55(s)             911(qps)
+PSumTime:      5374464000(ns)            5.37(s)             930(qps)
+PAvgTime:     537446400.0(ns)            0.54(s)             930(qps)
+FAvgTime:       1074892.8(ns)             0.0(s)             930(qps)
+PGrar   :               7(cn)            0.70(%)
+PLess   :               3(cn)            0.30(%)
+P50     :       540569600(ns)            0.54(s)             924(qps)
+P90     :       547430400(ns)            0.55(s)             913(qps)
+P95     :       548659200(ns)            0.55(s)             911(qps)
+P99     :       548659200(ns)            0.55(s)             911(qps)
+==========================================
+
+--- update bench_users score/profile ---
+==========================================
+execute tcPgdb:update_user_score(#Fun<tcPgdb.28.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23134515200(ns)           23.13(s)              21(qps)
+PMaxTime:     23765708800(ns)           23.77(s)              21(qps)
+PSumTime:    234663424000(ns)          234.66(s)              21(qps)
+PAvgTime:   23466342400.0(ns)           23.47(s)              21(qps)
+FAvgTime:      46932684.8(ns)            0.05(s)              21(qps)
+PGrar   :               6(cn)            0.60(%)
+PLess   :               4(cn)            0.40(%)
+P50     :     23506636800(ns)           23.51(s)              21(qps)
+P90     :     23702528000(ns)            23.7(s)              21(qps)
+P95     :     23765708800(ns)           23.77(s)              21(qps)
+P99     :     23765708800(ns)           23.77(s)              21(qps)
+==========================================
+
+--- delete bench_users by primary key ---
+==========================================
+execute tcPgdb:delete_user(#Fun<tcPgdb.29.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23425740800(ns)           23.43(s)              21(qps)
+PMaxTime:     23762432000(ns)           23.76(s)              21(qps)
+PSumTime:    235543244800(ns)          235.54(s)              21(qps)
+PAvgTime:   23554324480.0(ns)           23.55(s)              21(qps)
+FAvgTime:     47108648.96(ns)            0.05(s)              21(qps)
+PGrar   :               5(cn)            0.50(%)
+PLess   :               5(cn)            0.50(%)
+P50     :     23521177600(ns)           23.52(s)              21(qps)
+P90     :     23661363200(ns)           23.66(s)              21(qps)
+P95     :     23762432000(ns)           23.76(s)              21(qps)
+P99     :     23762432000(ns)           23.76(s)              21(qps)
+==========================================
+=== 基础 CRUD 性能测试完成 ===
+✓ 基础 CRUD 性能测试 完成
+
+运行测试: 批量操作性能测试
+=== 批量操作性能测试 ===
+批量大小: 10
+
+--- batchInsert bench_users ---
+==========================================
+execute tcPgdb:batch_insert_users(#Fun<tcPgdb.23.72589345>(10)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     25999769600(ns)            26.0(s)              19(qps)
+PMaxTime:     26047078400(ns)           26.05(s)              19(qps)
+PSumTime:    260301107200(ns)           260.3(s)              19(qps)
+PAvgTime:   26030110720.0(ns)           26.03(s)              19(qps)
+FAvgTime:     52060221.44(ns)            0.05(s)              19(qps)
+PGrar   :               6(cn)            0.60(%)
+PLess   :               4(cn)            0.40(%)
+P50     :     26045952000(ns)           26.05(s)              19(qps)
+P90     :     26046771200(ns)           26.05(s)              19(qps)
+P95     :     26047078400(ns)           26.05(s)              19(qps)
+P99     :     26047078400(ns)           26.05(s)              19(qps)
+==========================================
+
+--- batchDeleteByKey bench_users ---
+==========================================
+execute tcPgdb:batch_delete_users(#Fun<tcPgdb.24.72589345>(10)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23438438400(ns)           23.44(s)              21(qps)
+PMaxTime:     23964160000(ns)           23.96(s)              20(qps)
+PSumTime:    236649472000(ns)          236.65(s)              21(qps)
+PAvgTime:   23664947200.0(ns)           23.66(s)              21(qps)
+FAvgTime:      47329894.4(ns)            0.05(s)              21(qps)
+PGrar   :               3(cn)            0.30(%)
+PLess   :               7(cn)            0.70(%)
+P50     :     23622963200(ns)           23.62(s)              21(qps)
+P90     :     23862476800(ns)           23.86(s)              20(qps)
+P95     :     23964160000(ns)           23.96(s)              20(qps)
+P99     :     23964160000(ns)           23.96(s)              20(qps)
+==========================================
+
+--- batchInsert bench_events(map) ---
+==========================================
+execute tcPgdb:batch_insert_events(#Fun<tcPgdb.25.72589345>(10)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23583232000(ns)           23.58(s)              21(qps)
+PMaxTime:     23676518400(ns)           23.68(s)              21(qps)
+PSumTime:    236546355200(ns)          236.55(s)              21(qps)
+PAvgTime:   23654635520.0(ns)           23.65(s)              21(qps)
+FAvgTime:     47309271.04(ns)            0.05(s)              21(qps)
+PGrar   :               6(cn)            0.60(%)
+PLess   :               4(cn)            0.40(%)
+P50     :     23673753600(ns)           23.67(s)              21(qps)
+P90     :     23676211200(ns)           23.68(s)              21(qps)
+P95     :     23676518400(ns)           23.68(s)              21(qps)
+P99     :     23676518400(ns)           23.68(s)              21(qps)
+==========================================
+批量大小: 100
+
+--- batchInsert bench_users ---
+==========================================
+execute tcPgdb:batch_insert_users(#Fun<tcPgdb.23.72589345>(100)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     26304000000(ns)            26.3(s)              19(qps)
+PMaxTime:     26402406400(ns)            26.4(s)              18(qps)
+PSumTime:    263692697600(ns)          263.69(s)              18(qps)
+PAvgTime:   26369269760.0(ns)           26.37(s)              18(qps)
+FAvgTime:     52738539.52(ns)            0.05(s)              18(qps)
+PGrar   :               5(cn)            0.50(%)
+PLess   :               5(cn)            0.50(%)
+P50     :     26352640000(ns)           26.35(s)              18(qps)
+P90     :     26402406400(ns)            26.4(s)              18(qps)
+P95     :     26402406400(ns)            26.4(s)              18(qps)
+P99     :     26402406400(ns)            26.4(s)              18(qps)
+==========================================
+
+--- batchDeleteByKey bench_users ---
+==========================================
+execute tcPgdb:batch_delete_users(#Fun<tcPgdb.24.72589345>(100)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     25597440000(ns)            25.6(s)              19(qps)
+PMaxTime:     26455859200(ns)           26.46(s)              18(qps)
+PSumTime:    259010969600(ns)          259.01(s)              19(qps)
+PAvgTime:   25901096960.0(ns)            25.9(s)              19(qps)
+FAvgTime:     51802193.92(ns)            0.05(s)              19(qps)
+PGrar   :               4(cn)            0.40(%)
+PLess   :               6(cn)            0.60(%)
+P50     :     25716121600(ns)           25.72(s)              19(qps)
+P90     :     26261504000(ns)           26.26(s)              19(qps)
+P95     :     26455859200(ns)           26.46(s)              18(qps)
+P99     :     26455859200(ns)           26.46(s)              18(qps)
+==========================================
+
+--- batchInsert bench_events(map) ---
+==========================================
+execute tcPgdb:batch_insert_events(#Fun<tcPgdb.25.72589345>(100)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     26804838400(ns)            26.8(s)              18(qps)
+PMaxTime:     26986905600(ns)           26.99(s)              18(qps)
+PSumTime:    268407705600(ns)          268.41(s)              18(qps)
+PAvgTime:   26840770560.0(ns)           26.84(s)              18(qps)
+FAvgTime:     53681541.12(ns)            0.05(s)              18(qps)
+PGrar   :               2(cn)            0.20(%)
+PLess   :               8(cn)            0.80(%)
+P50     :     26825318400(ns)           26.83(s)              18(qps)
+P90     :     26854092800(ns)           26.85(s)              18(qps)
+P95     :     26986905600(ns)           26.99(s)              18(qps)
+P99     :     26986905600(ns)           26.99(s)              18(qps)
+==========================================
+批量大小: 500
+
+--- batchInsert bench_users ---
+==========================================
+execute tcPgdb:batch_insert_users(#Fun<tcPgdb.23.72589345>(500)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     65840435200(ns)           65.84(s)               7(qps)
+PMaxTime:     68306022400(ns)           68.31(s)               7(qps)
+PSumTime:    676099174400(ns)           676.1(s)               7(qps)
+PAvgTime:   67609917440.0(ns)           67.61(s)               7(qps)
+FAvgTime:    135219834.88(ns)            0.14(s)               7(qps)
+PGrar   :               7(cn)            0.70(%)
+PLess   :               3(cn)            0.30(%)
+P50     :     67839692800(ns)           67.84(s)               7(qps)
+P90     :     68190208000(ns)           68.19(s)               7(qps)
+P95     :     68306022400(ns)           68.31(s)               7(qps)
+P99     :     68306022400(ns)           68.31(s)               7(qps)
+==========================================
+
+--- batchDeleteByKey bench_users ---
+==========================================
+execute tcPgdb:batch_delete_users(#Fun<tcPgdb.24.72589345>(500)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     37534617600(ns)           37.53(s)              13(qps)
+PMaxTime:     44053094400(ns)           44.05(s)              11(qps)
+PSumTime:    413003468800(ns)           413.0(s)              12(qps)
+PAvgTime:   41300346880.0(ns)            41.3(s)              12(qps)
+FAvgTime:     82600693.76(ns)            0.08(s)              12(qps)
+PGrar   :               5(cn)            0.50(%)
+PLess   :               5(cn)            0.50(%)
+P50     :     41237606400(ns)           41.24(s)              12(qps)
+P90     :     44034252800(ns)           44.03(s)              11(qps)
+P95     :     44053094400(ns)           44.05(s)              11(qps)
+P99     :     44053094400(ns)           44.05(s)              11(qps)
+==========================================
+
+--- batchInsert bench_events(map) ---
+==========================================
+execute tcPgdb:batch_insert_events(#Fun<tcPgdb.25.72589345>(500)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     50021683200(ns)           50.02(s)               9(qps)
+PMaxTime:     51062681600(ns)           51.06(s)               9(qps)
+PSumTime:    507049779200(ns)          507.05(s)               9(qps)
+PAvgTime:   50704977920.0(ns)            50.7(s)               9(qps)
+FAvgTime:    101409955.84(ns)             0.1(s)               9(qps)
+PGrar   :               8(cn)            0.80(%)
+PLess   :               2(cn)            0.20(%)
+P50     :     50760704000(ns)           50.76(s)               9(qps)
+P90     :     51002880000(ns)            51.0(s)               9(qps)
+P95     :     51062681600(ns)           51.06(s)               9(qps)
+P99     :     51062681600(ns)           51.06(s)               9(qps)
+==========================================
+=== 批量操作性能测试完成 ===
+✓ 批量操作性能测试 完成
+
+运行测试: 不同数据结构性能对比
+=== 不同数据结构性能对比 ===
+
+--- record insert bench_users ---
+==========================================
+execute tcPgdb:insert_user(#Fun<tcPgdb.17.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23447756800(ns)           23.45(s)              21(qps)
+PMaxTime:     23541657600(ns)           23.54(s)              21(qps)
+PSumTime:    234926899200(ns)          234.93(s)              21(qps)
+PAvgTime:   23492689920.0(ns)           23.49(s)              21(qps)
+FAvgTime:     46985379.84(ns)            0.05(s)              21(qps)
+PGrar   :               6(cn)            0.60(%)
+PLess   :               4(cn)            0.40(%)
+P50     :     23494963200(ns)           23.49(s)              21(qps)
+P90     :     23541657600(ns)           23.54(s)              21(qps)
+P95     :     23541657600(ns)           23.54(s)              21(qps)
+P99     :     23541657600(ns)           23.54(s)              21(qps)
+==========================================
+
+--- map insert bench_events ---
+==========================================
+execute tcPgdb:insert_event(#Fun<tcPgdb.18.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23834828800(ns)           23.83(s)              20(qps)
+PMaxTime:     23905689600(ns)           23.91(s)              20(qps)
+PSumTime:    238821171200(ns)          238.82(s)              20(qps)
+PAvgTime:   23882117120.0(ns)           23.88(s)              20(qps)
+FAvgTime:     47764234.24(ns)            0.05(s)              20(qps)
+PGrar   :               7(cn)            0.70(%)
+PLess   :               3(cn)            0.30(%)
+P50     :     23882342400(ns)           23.88(s)              20(qps)
+P90     :     23905587200(ns)           23.91(s)              20(qps)
+P95     :     23905689600(ns)           23.91(s)              20(qps)
+P99     :     23905689600(ns)           23.91(s)              20(qps)
+==========================================
+
+--- map upsert bench_kv(existing key) ---
+==========================================
+execute tcPgdb:upsert_kv_existing(#Fun<tcPgdb.19.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23507251200(ns)           23.51(s)              21(qps)
+PMaxTime:     24077721600(ns)           24.08(s)              20(qps)
+PSumTime:    237748940800(ns)          237.75(s)              21(qps)
+PAvgTime:   23774894080.0(ns)           23.77(s)              21(qps)
+FAvgTime:     47549788.16(ns)            0.05(s)              21(qps)
+PGrar   :               4(cn)            0.40(%)
+PLess   :               6(cn)            0.60(%)
+P50     :     23709798400(ns)           23.71(s)              21(qps)
+P90     :     24051404800(ns)           24.05(s)              20(qps)
+P95     :     24077721600(ns)           24.08(s)              20(qps)
+P99     :     24077721600(ns)           24.08(s)              20(qps)
+==========================================
+
+--- jsonbSet bench_users.profile ---
+==========================================
+execute tcPgdb:jsonb_set_user_profile(#Fun<tcPgdb.20.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23313819700(ns)           23.31(s)              21(qps)
+PMaxTime:     23841486600(ns)           23.84(s)              20(qps)
+PSumTime:    236398918900(ns)           236.4(s)              21(qps)
+PAvgTime:   23639891890.0(ns)           23.64(s)              21(qps)
+FAvgTime:     47279783.78(ns)            0.05(s)              21(qps)
+PGrar   :               5(cn)            0.50(%)
+PLess   :               5(cn)            0.50(%)
+P50     :     23629212000(ns)           23.63(s)              21(qps)
+P90     :     23826331400(ns)           23.83(s)              20(qps)
+P95     :     23841486600(ns)           23.84(s)              20(qps)
+P99     :     23841486600(ns)           23.84(s)              20(qps)
+==========================================
+
+--- jsonbGet bench_users.profile ---
+==========================================
+execute tcPgdb:jsonb_get_user_profile(#Fun<tcPgdb.21.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:       523673800(ns)            0.52(s)             954(qps)
+PMaxTime:       555417700(ns)            0.56(s)             900(qps)
+PSumTime:      5447067000(ns)            5.45(s)             917(qps)
+PAvgTime:     544706700.0(ns)            0.54(s)             917(qps)
+FAvgTime:       1089413.4(ns)             0.0(s)             917(qps)
+PGrar   :               6(cn)            0.60(%)
+PLess   :               4(cn)            0.40(%)
+P50     :       546509100(ns)            0.55(s)             914(qps)
+P90     :       554188900(ns)            0.55(s)             902(qps)
+P95     :       555417700(ns)            0.56(s)             900(qps)
+P99     :       555417700(ns)            0.56(s)             900(qps)
+==========================================
+blob 大小: 1KB
+
+--- insert bench_blobs(bytea) ---
+==========================================
+execute tcPgdb:insert_blob(#Fun<tcPgdb.22.72589345>("1KB", <<"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"...>>)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23869964000(ns)           23.87(s)              20(qps)
+PMaxTime:     23986904800(ns)           23.99(s)              20(qps)
+PSumTime:    239386232000(ns)          239.39(s)              20(qps)
+PAvgTime:   23938623200.0(ns)           23.94(s)              20(qps)
+FAvgTime:      47877246.4(ns)            0.05(s)              20(qps)
+PGrar   :               6(cn)            0.60(%)
+PLess   :               4(cn)            0.40(%)
+P50     :     23940824800(ns)           23.94(s)              20(qps)
+P90     :     23965400800(ns)           23.97(s)              20(qps)
+P95     :     23986904800(ns)           23.99(s)              20(qps)
+P99     :     23986904800(ns)           23.99(s)              20(qps)
+==========================================
+blob 大小: 64KB
+
+--- insert bench_blobs(bytea) ---
+==========================================
+execute tcPgdb:insert_blob(#Fun<tcPgdb.22.72589345>("64KB", <<"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"...>>)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23684210100(ns)           23.68(s)              21(qps)
+PMaxTime:     23796338200(ns)            23.8(s)              21(qps)
+PSumTime:    237320719900(ns)          237.32(s)              21(qps)
+PAvgTime:   23732071990.0(ns)           23.73(s)              21(qps)
+FAvgTime:     47464143.98(ns)            0.05(s)              21(qps)
+PGrar   :               4(cn)            0.40(%)
+PLess   :               6(cn)            0.60(%)
+P50     :     23716056600(ns)           23.72(s)              21(qps)
+P90     :     23773298200(ns)           23.77(s)              21(qps)
+P95     :     23796338200(ns)            23.8(s)              21(qps)
+P99     :     23796338200(ns)            23.8(s)              21(qps)
+==========================================
+blob 大小: 256KB
+
+--- insert bench_blobs(bytea) ---
+==========================================
+execute tcPgdb:insert_blob(#Fun<tcPgdb.22.72589345>("256KB", <<"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"...>>)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23076977800(ns)           23.08(s)              21(qps)
+PMaxTime:     23179582800(ns)           23.18(s)              21(qps)
+PSumTime:    231190437600(ns)          231.19(s)              21(qps)
+PAvgTime:   23119043760.0(ns)           23.12(s)              21(qps)
+FAvgTime:     46238087.52(ns)            0.05(s)              21(qps)
+PGrar   :               5(cn)            0.50(%)
+PLess   :               5(cn)            0.50(%)
+P50     :     23107697700(ns)           23.11(s)              21(qps)
+P90     :     23135448100(ns)           23.14(s)              21(qps)
+P95     :     23179582800(ns)           23.18(s)              21(qps)
+P99     :     23179582800(ns)           23.18(s)              21(qps)
+==========================================
+=== 不同数据结构性能对比完成 ===
+✓ 不同数据结构性能对比 完成
+
+运行测试: 查询与扫描性能测试
+=== 查询与扫描性能测试 ===
+
+--- get bench_users existing row ---
+==========================================
+execute tcPgdb:get_existing_user(#Fun<tcPgdb.14.72589345>(5000)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:       446566600(ns)            0.45(s)            1119(qps)
+PMaxTime:       451584300(ns)            0.45(s)            1107(qps)
+PSumTime:      4496898800(ns)             4.5(s)            1111(qps)
+PAvgTime:     449689880.0(ns)            0.45(s)            1111(qps)
+FAvgTime:       899379.76(ns)             0.0(s)            1111(qps)
+PGrar   :               6(cn)            0.60(%)
+PLess   :               4(cn)            0.40(%)
+P50     :       450048300(ns)            0.45(s)            1110(qps)
+P90     :       451379500(ns)            0.45(s)            1107(qps)
+P95     :       451584300(ns)            0.45(s)            1107(qps)
+P99     :       451584300(ns)            0.45(s)            1107(qps)
+==========================================
+
+--- query SQL by id ---
+==========================================
+execute tcPgdb:query_user_sql(#Fun<tcPgdb.14.72589345>(5000)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:       423321800(ns)            0.42(s)            1181(qps)
+PMaxTime:       428441800(ns)            0.43(s)            1167(qps)
+PSumTime:      4262709200(ns)            4.26(s)            1172(qps)
+PAvgTime:     426270920.0(ns)            0.43(s)            1172(qps)
+FAvgTime:       852541.84(ns)             0.0(s)            1172(qps)
+PGrar   :               6(cn)            0.60(%)
+PLess   :               4(cn)            0.40(%)
+P50     :       426803400(ns)            0.43(s)            1171(qps)
+P90     :       427827400(ns)            0.43(s)            1168(qps)
+P95     :       428441800(ns)            0.43(s)            1167(qps)
+P99     :       428441800(ns)            0.43(s)            1167(qps)
+==========================================
+
+--- selectPage bench_users ---
+==========================================
+execute tcPgdb:select_user_page(#Fun<tcPgdb.15.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:      1606247200(ns)            1.61(s)             311(qps)
+PMaxTime:      1652941600(ns)            1.65(s)             302(qps)
+PSumTime:     16297275200(ns)            16.3(s)             306(qps)
+PAvgTime:    1629727520.0(ns)            1.63(s)             306(qps)
+FAvgTime:      3259455.04(ns)             0.0(s)             306(qps)
+PGrar   :               6(cn)            0.60(%)
+PLess   :               4(cn)            0.40(%)
+P50     :      1630720800(ns)            1.63(s)             306(qps)
+P90     :      1651303200(ns)            1.65(s)             302(qps)
+P95     :      1652941600(ns)            1.65(s)             302(qps)
+P99     :      1652941600(ns)            1.65(s)             302(qps)
+==========================================
+
+--- foreachByKey bench_users ---
+==========================================
+execute tcPgdb:foreach_users_by_key(200).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     47999921600(ns)            48.0(s)              10(qps)
+PMaxTime:     48071601600(ns)           48.07(s)              10(qps)
+PSumTime:    480327203200(ns)          480.33(s)              10(qps)
+PAvgTime:   48032720320.0(ns)           48.03(s)              10(qps)
+FAvgTime:     96065440.64(ns)             0.1(s)              10(qps)
+PGrar   :               4(cn)            0.40(%)
+PLess   :               6(cn)            0.60(%)
+P50     :     48030948800(ns)           48.03(s)              10(qps)
+P90     :     48052145600(ns)           48.05(s)              10(qps)
+P95     :     48071601600(ns)           48.07(s)              10(qps)
+P99     :     48071601600(ns)           48.07(s)              10(qps)
+==========================================
+
+--- foldRows bench_users ---
+==========================================
+execute tcPgdb:fold_user_rows(200).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     49162776600(ns)           49.16(s)              10(qps)
+PMaxTime:     49286885500(ns)           49.29(s)              10(qps)
+PSumTime:    492321117200(ns)          492.32(s)              10(qps)
+PAvgTime:   49232111720.0(ns)           49.23(s)              10(qps)
+FAvgTime:     98464223.44(ns)             0.1(s)              10(qps)
+PGrar   :               4(cn)            0.40(%)
+PLess   :               6(cn)            0.60(%)
+P50     :     49215819900(ns)           49.22(s)              10(qps)
+P90     :     49281355900(ns)           49.28(s)              10(qps)
+P95     :     49286885500(ns)           49.29(s)              10(qps)
+P99     :     49286885500(ns)           49.29(s)              10(qps)
+==========================================
+
+--- select profile jsonb_contains ---
+==========================================
+execute tcPgdb:select_user_by_json_profile(#Fun<tcPgdb.16.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:       417689800(ns)            0.42(s)            1197(qps)
+PMaxTime:       422400200(ns)            0.42(s)            1183(qps)
+PSumTime:      4197582800(ns)             4.2(s)            1191(qps)
+PAvgTime:     419758280.0(ns)            0.42(s)            1191(qps)
+FAvgTime:       839516.56(ns)             0.0(s)            1191(qps)
+PGrar   :               4(cn)            0.40(%)
+PLess   :               6(cn)            0.60(%)
+P50     :       419225800(ns)            0.42(s)            1192(qps)
+P90     :       422297800(ns)            0.42(s)            1183(qps)
+P95     :       422400200(ns)            0.42(s)            1183(qps)
+P99     :       422400200(ns)            0.42(s)            1183(qps)
+==========================================
+=== 查询与扫描性能测试完成 ===
+✓ 查询与扫描性能测试 完成
+
+运行测试: 事务与直连回调性能测试
+=== 事务与直连回调性能测试 ===
+
+--- transaction insert order and update user ---
+==========================================
+execute tcPgdb:transaction_insert_order_and_update_user(#Fun<tcPgdb.13.72589345>()).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     23995199200(ns)            24.0(s)              20(qps)
+PMaxTime:     24067903300(ns)           24.07(s)              20(qps)
+PSumTime:    240315614700(ns)          240.32(s)              20(qps)
+PAvgTime:   24031561470.0(ns)           24.03(s)              20(qps)
+FAvgTime:     48063122.94(ns)            0.05(s)              20(qps)
+PGrar   :               4(cn)            0.40(%)
+PLess   :               6(cn)            0.60(%)
+P50     :     24019570400(ns)           24.02(s)              20(qps)
+P90     :     24067288900(ns)           24.07(s)              20(qps)
+P95     :     24067903300(ns)           24.07(s)              20(qps)
+P99     :     24067903300(ns)           24.07(s)              20(qps)
+==========================================
+
+--- withConnection get by id ---
+==========================================
+execute tcPgdb:with_connection_get_user(#Fun<tcPgdb.14.72589345>(5000)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:       457523400(ns)            0.46(s)            1092(qps)
+PMaxTime:       462950600(ns)            0.46(s)            1080(qps)
+PSumTime:      4609230800(ns)            4.61(s)            1084(qps)
+PAvgTime:     460923080.0(ns)            0.46(s)            1084(qps)
+FAvgTime:       921846.16(ns)             0.0(s)            1084(qps)
+PGrar   :               6(cn)            0.60(%)
+PLess   :               4(cn)            0.40(%)
+P50     :       461005000(ns)            0.46(s)            1084(qps)
+P90     :       462336200(ns)            0.46(s)            1081(qps)
+P95     :       462950600(ns)            0.46(s)            1080(qps)
+P99     :       462950600(ns)            0.46(s)            1080(qps)
+==========================================
+
+--- withConnection direct squery ---
+==========================================
+execute tcPgdb:with_connection_direct_squery().
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:       192307300(ns)            0.19(s)            2600(qps)
+PMaxTime:       196915300(ns)             0.2(s)            2539(qps)
+PSumTime:      1944986600(ns)            1.94(s)            2570(qps)
+PAvgTime:     194498660.0(ns)            0.19(s)            2570(qps)
+FAvgTime:       388997.32(ns)             0.0(s)            2570(qps)
+PGrar   :               4(cn)            0.40(%)
+PLess   :               6(cn)            0.60(%)
+P50     :       194048100(ns)            0.19(s)            2576(qps)
+P90     :       195788900(ns)             0.2(s)            2553(qps)
+P95     :       196915300(ns)             0.2(s)            2539(qps)
+P99     :       196915300(ns)             0.2(s)            2539(qps)
+==========================================
+=== 事务与直连回调性能测试完成 ===
+✓ 事务与直连回调性能测试 完成
+
+运行测试: 混合读写性能测试
+=== 混合读写性能测试 ===
+
+--- mixed read/write workload ---
+==========================================
+execute tcPgdb:mixed_read_write_once(#Fun<tcPgdb.12.72589345>(5000)).
+execute LoopTime:500
+execute ProcCnts:10 success:10
+PMinTime:     18306159600(ns)           18.31(s)              27(qps)
+PMaxTime:     20057200400(ns)           20.06(s)              24(qps)
+PSumTime:    192890054900(ns)          192.89(s)              25(qps)
+PAvgTime:   19289005490.0(ns)           19.29(s)              25(qps)
+FAvgTime:     38578010.98(ns)            0.04(s)              25(qps)
+PGrar   :               4(cn)            0.40(%)
+PLess   :               6(cn)            0.60(%)
+P50     :     19181270400(ns)           19.18(s)              26(qps)
+P90     :     19896432400(ns)            19.9(s)              25(qps)
+P95     :     20057200400(ns)           20.06(s)              24(qps)
+P99     :     20057200400(ns)           20.06(s)              24(qps)
+==========================================
+=== 混合读写性能测试完成 ===
+✓ 混合读写性能测试 完成
+
+========================================
+       所有性能测试运行完成           
+========================================

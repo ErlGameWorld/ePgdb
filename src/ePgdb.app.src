@@ -1,0 +1,11 @@
+{application, ePgdb, [
+	{description, "Flexible PostgreSQL toolkit for Erlang game servers"},
+	{vsn, "0.1.0"},
+	{registered, [ePgdb_sup]},
+	{mod, {ePgdb_app, []}},
+	{applications, [kernel, stdlib, epgsql, eGbh, eLfq, eFaw, jiffy]},
+	{env, []},
+	{modules, []},
+	{licenses, ["MIT"]},
+	{links, []}
+]}.
